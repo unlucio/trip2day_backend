@@ -1,0 +1,14 @@
+{
+  "name": "trip2day_backend",
+  "version": "1.0.0",
+  "description": "backend trip2day, progetto codemaster talent garden",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "team Bòastoise",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
