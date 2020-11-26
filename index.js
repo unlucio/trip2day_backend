@@ -17,35 +17,50 @@ const accounts = [
 const planner = [
   {
     nickname: "nickname",
-    planner:[ {
-      where: "London",
-      fromWhen: "",
-      toWhen: "",
-      textRequest: "voglio andare in posti bellissimi",
-      response: [
-        {
-          fromWho: "gianni",
-          name: "Ristorante Pensavo Peggio",
-          category: "restaurant",
-          description: "fa schifo come te",
-          cost: "$$$$",
-          timeNeeded: 2,
-          photoUrl: "",
-        },
-      ],
-      savedResponse: [
-        {
-          fromWho: "gianni",
-          name: "Ristorante Pensavo Peggio",
-          category: "restaurant",
-          description: "fa schifo come te",
-          cost: "$$$$",
-          timeNeeded: 2,
-          photoUrl: "",
-        },
-      ],
-      myPlan: [{ name: "London Eye", fromWhen: 10, toWhen: 12, description:'bella ma non ci vivrei' }],
-    },]
+    planner: [
+      {
+        where: "London",
+        fromWhen: "",
+        toWhen: "",
+        textRequest: "voglio andare in posti bellissimi",
+        response: [
+          {
+            fromWho: "gianni",
+            name: "Ristorante Pensavo Peggio",
+            category: "restaurant",
+            description: "fa schifo come te",
+            cost: "$$$$",
+            timeNeeded: 2,
+            photoUrl: "",
+          },
+        ],
+        savedResponse: [
+          {
+            fromWho: "gianni",
+            name: "Ristorante Pensavo Peggio",
+            category: "restaurant",
+            description: "fa schifo come te",
+            cost: "$$$$",
+            timeNeeded: 2,
+            photoUrl: "",
+          },
+        ],
+        myPlan: [
+          {
+            name: "London Eye",
+            fromWhen: 10,
+            toWhen: 12,
+            description: "bella ma non ci vivrei",
+          },
+        ],
+      },
+    ],
+    friendList: [
+      { nickname: "mario", img: "" },
+      { nickname: "luigi", img: "" },
+      { nickname: "wario", img: "" },
+      { nickname: "waluigi", img: "" },
+    ],
   },
 ];
 
@@ -68,8 +83,12 @@ app
 app
   .route("/:nickname/planner/:where")
   .get((req, res) => {
-    let userplanner = planner.find((userplanner)=>{return req.params.nickname === userplanner.nickname});
-    let response = userplanner.planner.find((planner)=>{return planner.where === req.params.where})
+    let userplanner = planner.find((userplanner) => {
+      return req.params.nickname === userplanner.nickname;
+    });
+    let response = userplanner.planner.find((planner) => {
+      return planner.where === req.params.where;
+    });
     res.json(response);
   })
   .post((req, res) => {
