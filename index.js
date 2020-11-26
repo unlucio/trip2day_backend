@@ -14,26 +14,63 @@ const accounts = [
   { nickname: "accountbellissimo", password: "passwordok" },
 ];
 
+const planner = [
+  {
+    nickname: "nickname",
+    planner:[ {
+      where: "London",
+      fromWhen: "",
+      toWhen: "",
+      textRequest: "voglio andare in posti bellissimi",
+      response: [
+        {
+          fromWho: "gianni",
+          name: "Ristorante Pensavo Peggio",
+          category: "restaurant",
+          description: "fa schifo come te",
+          cost: "$$$$",
+          timeNeeded: 2,
+          photoUrl: "",
+        },
+      ],
+      savedResponse: [
+        {
+          fromWho: "gianni",
+          name: "Ristorante Pensavo Peggio",
+          category: "restaurant",
+          description: "fa schifo come te",
+          cost: "$$$$",
+          timeNeeded: 2,
+          photoUrl: "",
+        },
+      ],
+      myPlan: [{ name: "London Eye", fromWhen: 10, toWhen: 12, description:'bella ma non ci vivrei' }],
+    },]
+  },
+];
+
 app
   .route("/auth")
   .post((req, res) => {
-
     let response = accounts.some((account) => {
-      return account.nickname === req.body.nickname &&
-        account.password === req.body.password;
+      return (
+        account.nickname === req.body.nickname &&
+        account.password === req.body.password
+      );
     });
 
     res.json({ authenticated: response });
-    // res.json({ authenticated:  req.body.nickname });
   })
   .all((req, res) => {
     res.json({ error: "Unknown Method" });
   });
 
 app
-  .route("")
+  .route("/:nickname/planner/:where")
   .get((req, res) => {
-    res.json();
+    let userplanner = planner.find((userplanner)=>{return req.params.nickname === userplanner.nickname});
+    let response = userplanner.planner.find((planner)=>{return planner.where === req.params.where})
+    res.json(response);
   })
   .post((req, res) => {
     res.json();
